@@ -1,0 +1,44 @@
+{
+  "routes": [
+    {
+      "src": "/",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/agbada",
+      "dest": "/agbada.html"
+    },
+    {
+      "src": "/comforters",
+      "dest": "/comforters.html"
+    },
+    {
+      "src": "/couches",
+      "dest": "/couches.html"
+    },
+    {
+      "src": "/delicates",
+      "dest": "/delicates.html"
+    },
+    {
+      "src": "/house-cleaning",
+      "dest": "/house-cleaning.html"
+    },
+    {
+      "src": "/power-wash",
+      "dest": "/power-wash.html"
+    },
+    {
+      "src": "/capate-cleaning",
+      "dest": "/capate-cleaning.html"
+    },
+    {
+      "src": "/car-detailing",
+      "dest": "/car-detailing.html"
+    },
+    {
+      "src": "/sneakers",
+      "dest": "/sneakers.html"
+    }
+  ]
+}

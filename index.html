@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prestige Dry Cleaning - Premium Cleaning Services</title>
+    <style>
+        /* Global Styles */
+        :root {
+            --primary: #005f73;
+            --secondary: #0a9396;
+            --accent: #94d2bd;
+            --light: #e9d8a6;
+            --dark: #001219;
+            --highlight: #ee9b00;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            color: var(--dark);
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="%230a9396"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" fill="%230a9396"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="%230a9396"/></svg>');
+            background-size: cover;
+            animation: wave 15s linear infinite;
+        }
+        
+        .wave:nth-child(2) {
+            animation-delay: -5s;
+            opacity: 0.5;
+        }
+        
+        .wave:nth-child(3) {
+            animation-delay: -2s;
+            opacity: 0.7;
+            bottom: 15px;
+        }
+        
+        @keyframes wave {
+            0% { background-position-x: 0; }
+            100% { background-position-x: 1000px; }
+        }
+        
+        /* Particles */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .particle {
+            position: absolute;
+            background-color: var(--accent);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+            opacity: 0.3;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-1000px) rotate(720deg); }
+        }
+        
+        /* Header Styles */
+        header {
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: 1px;
+        }
+        
+        .logo span {
+            color: var(--highlight);
+        }
+        
+        /* Navigation */
+        nav ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 1.1rem;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: all 0.3s ease;
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--highlight);
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover {
+            color: var(--highlight);
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 10rem 5% 5rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        .hero h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            animation: fadeInUp 1s ease;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            color: var(--dark);
+            line-height: 1.6;
+            animation: fadeInUp 1s ease 0.2s forwards;
+            opacity: 0;
+        }
+        
+        .discount-badge {
+            display: inline-block;
+            background-color: var(--highlight);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 20px rgba(238, 155, 0, 0.3);
+            transform: rotate(-5deg);
+            animation: pulse 2s infinite, fadeIn 1s ease;
+        }
+        
+        @keyframes pulse {
+            0% { transform: rotate(-5deg) scale(1); }
+            50% { transform: rotate(-5deg) scale(1.05); }
+            100% { transform: rotate(-5deg) scale(1); }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* Services Grid */
+        .services {
+            padding: 5rem 5%;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            display: inline-block;
+            position: relative;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--highlight);
+            border-radius: 2px;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+        
+        .service-card:hover::before {
+            opacity: 0.1;
+        }
+        
+        .service-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .service-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .service-card:hover .service-img img {
+            transform: scale(1.1);
+        }
+        
+        .service-content {
+            padding: 1.5rem;
+        }
+        
+        .service-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .service-content p {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+        
+        .price {
+            font-weight: 700;
+            color: var(--highlight);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 95, 115, 0.3);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 95, 115, 0.4);
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 5rem 5%;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+        
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .contact-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .whatsapp {
+            background-color: #25D366;
+            color: white;
+        }
+        
+        .email {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .contact-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 5%;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--light);
+        }
+        
+        .footer-section p, .footer-section a {
+            color: #ccc;
+            line-height: 1.6;
+        }
+        
+        .footer-section a {
+            display: block;
+            margin-bottom: 0.5rem;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-section a:hover {
+            color: var(--highlight);
+        }
+        
+        .copyright {
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem 5%;
+            }
+            
+            nav {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 80%;
+                height: calc(100vh - 80px);
+                background-color: white;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                transition: left 0.3s ease;
+                z-index: 999;
+            }
+            
+            nav.active {
+                left: 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .discount-badge {
+                font-size: 1.2rem;
+            }
+        }
+        
+        /* Create particles */
+        function createParticles() {
+            const particlesContainer = document.querySelector('.particles');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random size between 5px and 15px
+                const size = Math.random() * 10 + 5;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Random position
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                
+                // Random animation duration
+                particle.style.animationDuration = `${Math.random() * 20 + 10}s`;
+                
+                // Random delay
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+    </div>
+    <div class="particles"></div>
+    
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <h1>PRESTIGE<span>DRY CLEANING</span></h1>
+        </div>
+        
+        <nav id="nav">
+            <ul>
+                <li><a href="#services">Services</a></li>
+                <li><a href="trousers.html">Trousers</a></li>
+                <li><a href="suits.html">Suits</a></li>
+                <li><a href="shirts.html">Shirts & Tees</a></li>
+                <li><a href="agbada.html">Traditional</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        
+        <button class="mobile-menu-btn" id="menuBtn">☰</button>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <h2>A Clean Environment For a Stress Free Day!</h2>
+        <div class="discount-badge">30% OFF All Cleaning Services</div>
+        <p>Prestige Dry Cleaning offers premium cleaning services with free pickup and delivery for orders over 7kg. Experience the difference with our eco-friendly cleaning solutions and expert care for your garments.</p>
+        <a href="#services" class="btn">Our Services</a>
+    </section>
+    
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="section-title">
+            <h2>Our Cleaning Services</h2>
+        </div>
+        
+        <div class="services-grid">
+            <!-- Classic Clothing -->
+            <div class="service-card">
+                <div class="service-img">
+                    <img src="https://files.catbox.moe/ucr4bk.jpeg" alt="Trousers Cleaning">
+                </div>
+                <div class="service-content">
+                    <h3>Trousers Cleaning</h3>
+                    <p>Professional cleaning and pressing for all types of trousers.</p>
+                    <span class="price">From €4.99</span>
+                    <a href="trousers.html" class="btn">View Service</a>
+                </div>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-img">
+                    <img src="https://files.catbox.moe/8frh87.jpeg" alt="Suit Cleaning">
+                </div>
+                <div class="service-content">
+                    <h3>Suit Cleaning</h3>
+                    <p>Expert cleaning and pressing for your valuable suits.</p>
+                    <span class="price">From €12.99</span>
+                    <a href="suits.html" class="btn">View Service</a>
+                </div>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-img">
+                    <img src="https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Shirts & T-shirts">
+                </div>
+                <div class="service-content">
+                    <h3>Shirts & T-shirts</h3>
+                    <p>Crisp cleaning and perfect pressing for your shirts.</p>
+                    <span class="price">From €2.99</span>
+                    <a href="shirts.html" class="btn">View Service</a>
+                </div>
+            </div>
+            
+            <!-- Various Textiles -->
+            <div class="service-card">
+                <div class="service-img">
+                    <img src="https://files.catbox.moe/yjeye9.jpeg" alt="Comforter Cleaning">
+                </div>
+                <div class="service-content">
+                    <h3>Comforter Cleaning</h3>
+                    <p>Deep cleaning for your comforters and heavy bedding.</p>
+                    <span class="price">From €19.99</span>
+                    <a href="comforters.html" class="btn">View Service</a>
+                </div>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-img">
+                    <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Sofa Cleaning">
+                </div>
+                <div class="service-content">
+                    <h3>Sofa & Upholstery</h3>
+                    <p>Professional cleaning for your furniture and upholstery.</p>
+                    <span class="price">From €49.99</span>
+                    <a href="couches.html" class="btn">View Service</a>
+                </div>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-img">
+                    <img src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Delicate Items">
+                </div>
+                <div class="service-content">
+                    <h3>Delicate Items</h3>
+                    <p>Special care for your delicate fabrics and home linens.</p>
+                    <span class="price">From €7.99</span>
+                    <a href="delicates.html" class="btn">View Service</a>
+                </div>
+            </div>
+            
+            <!-- Specialized Cleaning -->
+            <div class="service-card">
+                <div class="service-img">
+                    <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="House Cleaning">
+                </div>
+                <div class="service-content">
+                    <h3>House Cleaning</h3>
+                    <p>Complete home cleaning services for a spotless environment.</p>
+                    <span class="price">From €79.99</span>
+                    <a href="house-cleaning.html" class="btn">View Service</a>
+                </div>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-img">
+                    <img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Power Washing">
+                </div>
+                <div class="service-content">
+                    <h3>Power Washing</h3>
+                    <p>High-pressure washing for exterior surfaces.</p>
+                    <span class="price">From €99.99</span>
+                    <a href="power-wash.html" class="btn">View Service</a>
+                </div>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-img">
+                    <img src="https://files.catbox.moe/p4gsdq.jpeg" alt="Carpet Cleaning">
+                </div>
+                <div class="service-content">
+                    <h3>Carpet Cleaning</h3>
+                    <p>Deep cleaning for carpets and rugs of all sizes.</p>
+                    <span class="price">From €29.99</span>
+                    <a href="capate-cleaning.html" class="btn">View Service</a>
+                </div>
+            </div>
+            
+            <!-- Automobile -->
+            <div class="service-card">
+                <div class="service-img">
+                    <img src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Car Detailing">
+                </div>
+                <div class="service-content">
+                    <h3>Car Detailing</h3>
+                    <p>Interior and exterior detailing for your vehicle.</p>
+                    <span class="price">From €89.99</span>
+                    <a href="car-detailing.html" class="btn">View Service</a>
+                </div>
+            </div>
+            
+            <!-- Others -->
+            <div class="service-card">
+                <div class="service-img">
+                    <img src="https://images.unsplash.com/photo-1600269452121-4f2416e55c28?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Sneakers Cleaning">
+                </div>
+                <div class="service-content">
+                    <h3>Sneakers Cleaning</h3>
+                    <p>Specialized cleaning for your sports shoes.</p>
+                    <span class="price">From €14.99</span>
+                    <a href="sneakers.html" class="btn">View Service</a>
+                </div>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-img">
+                    <img src="https://files.catbox.moe/dl29xx.jpeg" alt="Traditional Outfits">
+                </div>
+                <div class="service-content">
+                    <h3>Traditional Outfits</h3>
+                    <p>Special care for your Agbada and traditional garments.</p>
+                    <span class="price">3-piece set: €23</span>
+                    <a href="agbada.html" class="btn">View Service</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="section-title">
+            <h2>Contact Us</h2>
+        </div>
+        
+        <p>Have questions or ready to schedule a service? Get in touch with us today!</p>
+        
+        <div class="contact-buttons">
+            <a href="https://wa.me/2402913213" class="contact-btn whatsapp">
+                <span>WhatsApp</span>
+            </a>
+            <a href="mailto:severintimene59@gmail.com" class="contact-btn email">
+                <span>Email Us</span>
+            </a>
+        </div>
+        
+        <div style="margin-top: 2rem;">
+            <p><strong>Address:</strong> 9000 Breeze Wood Terrace, Greenbelt, MD 20770</p>
+            <p><strong>Phone:</strong> 240-291-3213 / 240-861-5000</p>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>Prestige Dry Cleaning provides premium cleaning services with a focus on quality, convenience, and eco-friendly solutions.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="trousers.html">Trousers Cleaning</a>
+                <a href="suits.html">Suit Cleaning</a>
+                <a href="shirts.html">Shirts & T-shirts</a>
+                <a href="agbada.html">Traditional Outfits</a>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p>9000 Breeze Wood Terrace</p>
+                <p>Greenbelt, MD 20770</p>
+                <p>240-291-3213</p>
+                <p>240-861-5000</p>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2025 Prestige Dry Cleaning. All Rights Reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const nav = document.getElementById('nav');
+        
+        menuBtn.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+        
+        // Create particles on load
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+        });
+    </script>
+</body>
+</html>

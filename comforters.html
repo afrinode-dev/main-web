@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comforter Cleaning - Prestige Dry Cleaning</title>
+    <style>
+        :root {
+            --primary: #005f73;
+            --secondary: #0a9396;
+            --accent: #94d2bd;
+            --light: #e9d8a6;
+            --dark: #001219;
+            --highlight: #ee9b00;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            color: var(--dark);
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+        header {
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: 1px;
+        }
+        .logo span {
+            color: var(--highlight);
+        }
+        nav ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 1.1rem;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: all 0.3s ease;
+        }
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--highlight);
+            transition: width 0.3s ease;
+        }
+        nav a:hover {
+            color: var(--highlight);
+        }
+        nav a:hover::after {
+            width: 100%;
+        }
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary);
+        }
+        .service-hero {
+            padding: 10rem 5% 5rem;
+            text-align: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1616628188841-7f2a9886d995?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        .service-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 95, 115, 0.8) 0%, rgba(10, 147, 150, 0.8) 100%);
+            z-index: -1;
+        }
+        .service-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease;
+        }
+        .service-hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+            animation: fadeInUp 1s ease 0.2s forwards;
+            opacity: 0;
+        }
+        .discount-badge {
+            display: inline-block;
+            background-color: var(--highlight);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 20px rgba(238, 155, 0, 0.3);
+            transform: rotate(-5deg);
+            animation: pulse 2s infinite, fadeIn 1s ease;
+        }
+        @keyframes pulse {
+            0% { transform: rotate(-5deg) scale(1); }
+            50% { transform: rotate(-5deg) scale(1.05); }
+            100% { transform: rotate(-5deg) scale(1); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; } to { opacity: 1; }
+        }
+        .service-details {
+            padding: 5rem 5%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+            align-items: center;
+            justify-content: center;
+        }
+        .service-image {
+            flex: 1;
+            min-width: 300px;
+            max-width: 500px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.5s ease;
+        }
+        .service-image:hover {
+            transform: scale(1.03);
+        }
+        .service-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .service-info {
+            flex: 1;
+            min-width: 300px;
+            max-width: 600px;
+        }
+        .service-info h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        .service-info h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background-color: var(--highlight);
+            border-radius: 2px;
+        }
+        .service-info p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        .price-list {
+            margin: 2rem 0;
+        }
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        .price-item:last-child {
+            border-bottom: none;
+        }
+        .price-name {
+            font-weight: 600;
+            color: var(--dark);
+        }
+        .price-amount {
+            font-weight: 700;
+            color: var(--highlight);
+        }
+        .benefits {
+            background-color: rgba(148, 210, 189, 0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+        .benefits h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        .benefits ul {
+            list-style-position: inside;
+            color: #555;
+            line-height: 1.8;
+        }
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 95, 115, 0.3);
+        }
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 95, 115, 0.4);
+        }
+        .contact {
+            padding: 5rem 5%;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        .contact-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .whatsapp {
+            background-color: #25D366;
+            color: white;
+        }
+        .email {
+            background-color: var(--primary);
+            color: white;
+        }
+        .contact-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 5%;
+            text-align: center;
+        }
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--light);
+        }
+        .footer-section p, .footer-section a {
+            color: #ccc;
+            line-height: 1.6;
+        }
+        .footer-section a {
+            display: block;
+            margin-bottom: 0.5rem;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .footer-section a:hover {
+            color: var(--highlight);
+        }
+        .copyright {
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+        }
+        @media (max-width: 768px) {
+            header { padding: 1rem 5%; }
+            nav {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 80%;
+                height: calc(100vh - 80px);
+                background-color: white;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                transition: left 0.3s ease;
+                z-index: 999;
+            }
+            nav.active { left: 0; }
+            nav ul {
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+            }
+            .mobile-menu-btn { display: block; }
+            .service-hero h1 { font-size: 2.5rem; }
+            .service-hero p { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>PRESTIGE<span>DRY CLEANING</span></h1>
+        </div>
+        <nav id="nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="comforters.html">Comforters</a></li>
+                <li><a href="couches.html">Couches</a></li>
+                <li><a href="delicates.html">Delicates</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <button class="mobile-menu-btn" id="menuBtn">☰</button>
+    </header>
+    
+    <section class="service-hero">
+        <h1>Comforter Cleaning</h1>
+        <div class="discount-badge">From €19.99</div>
+        <p>Deep cleaning for your comforters and heavy bedding, removing allergens and restoring freshness.</p>
+        <a href="#contact" class="btn">Book Now</a>
+    </section>
+    
+    <section class="service-details">
+        <div class="service-image">
+            <img src="https://files.catbox.moe/yjeye9.jpeg" alt="Comforter Cleaning Service">
+        </div>
+        <div class="service-info">
+            <h2>Professional Comforter Cleaning</h2>
+            <p>Our specialized comforter cleaning service uses industrial-grade equipment to thoroughly clean and sanitize your comforters, duvets, and heavy bedding. We remove dust mites, allergens, and stains while preserving the filling and fabric quality.</p>
+            <div class="price-list">
+                <div class="price-item">
+                    <span class="price-name">Twin Comforter</span>
+                    <span class="price-amount">€19.99</span>
+                </div>
+                <div class="price-item">
+                    <span class="price-name">Full/Queen Comforter</span>
+                    <span class="price-amount">€24.99</span>
+                </div>
+                <div class="price-item">
+                    <span class="price-name">King Comforter</span>
+                    <span class="price-amount">€29.99</span>
+                </div>
+                <div class="price-item">
+                    <span class="price-name">Down Comforter</span>
+                    <span class="price-amount">€34.99</span>
+                </div>
+                <div class="price-item">
+                    <span class="price-name">Duvet Cover</span>
+                    <span class="price-amount">€12.99</span>
+                </div>
+            </div>
+            <div class="benefits">
+                <h3>Service Benefits</h3>
+                <ul>
+                    <li>Deep cleaning removes allergens and dust mites</li>
+                    <li>Special care for down and specialty fillings</li>
+                    <li>30% discount on first order</li>
+                    <li>Free pickup and delivery for orders over 7kg</li>
+                    <li>Eco-friendly cleaning solutions</li>
+                </ul>
+            </div>
+            <a href="#contact" class="btn">Order Now</a>
+        </div>
+    </section>
+    
+    <section class="contact" id="contact">
+        <h2 style="font-size: 2rem; margin-bottom: 1rem;">Ready to Refresh Your Comforters?</h2>
+        <p>Contact us today to schedule your comforter cleaning service!</p>
+        <div class="contact-buttons">
+            <a href="https://wa.me/2402913213" class="contact-btn whatsapp">WhatsApp</a>
+            <a href="mailto:severintimene59@gmail.com" class="contact-btn email">Email Us</a>
+        </div>
+        <div style="margin-top: 2rem;">
+            <p><strong>Address:</strong> 9000 Breeze Wood Terrace, Greenbelt, MD 20770</p>
+            <p><strong>Phone:</strong> 240-291-3213 / 240-861-5000</p>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>Prestige Dry Cleaning provides premium cleaning services with a focus on quality, convenience, and eco-friendly solutions.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="comforters.html">Comforters</a>
+                <a href="couches.html">Couches</a>
+                <a href="delicates.html">Delicates</a>
+                <a href="house-cleaning.html">House Cleaning</a>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p>9000 Breeze Wood Terrace</p>
+                <p>Greenbelt, MD 20770</p>
+                <p>240-291-3213</p>
+                <p>240-861-5000</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 Prestige Dry Cleaning. All Rights Reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        const menuBtn = document.getElementById('menuBtn');
+        const nav = document.getElementById('nav');
+        menuBtn.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
