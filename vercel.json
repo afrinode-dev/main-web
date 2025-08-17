@@ -39,6 +39,22 @@
     {
       "src": "/sneakers",
       "dest": "/sneakers.html"
+    },
+    {
+      "src": "/suits",
+      "dest": "/suits.html"
+    },
+    {
+      "src": "/trousers",
+      "dest": "/trousers.html"
+    },
+    {
+      "src": "/shirts",
+      "dest": "/shirts.html"
+    },
+    {
+      "src": "/tshirts",
+      "dest": "/tshirts.html"
     }
   ]
 }
